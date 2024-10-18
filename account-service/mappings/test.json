@@ -1,0 +1,27 @@
+{
+  "request" : {
+    "urlPathTemplate" : "/api/v1/address/{cep}",
+    "method" : "GET",
+    "pathParameters" : {
+      "cep" : {
+        "equalTo" : "01001-000"
+      }
+    }
+  },
+  "response" : {
+    "status" : 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "cep": "01001-000",
+      "address": "Praça da Sé",
+      "complement": "lado ímpar",
+      "neighborhood": "Sé",
+      "location": "São Paulo",
+      "uf": "SP",
+      "status": "São Paulo",
+      "region": "Sudeste"
+    }
+  }
+}

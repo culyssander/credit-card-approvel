@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+	
+    <property resource="application.properties" />
+
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
+			<timeZone>Brazil/East</timeZone>
+			<customFields>{"component": "${spring.application.name}"}</customFields>
+		</encoder>
+	</appender>
+
+	<appender name="RabbitMQ" class="org.springframework.amqp.rabbit.logback.AmqpAppender">
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<customFields>{"component":"${spring.application.name}"}</customFields>
+		</encoder>
+
+		<addresses>${spring.rabbitmq.addresses:-localhost:5672}</addresses>
+		<username>${spring.rabbitmq.username:-guest}</username>
+		<password>${spring.rabbitmq.password:-guest}</password>
+		<exchangeName>${spring.rabbitmq.logging.exchange:-LOGGING.MESSAGE.EXCHANGE}</exchangeName>-->
+		<routingKeyPattern>${spring.rabbitmq.logging.routerkey:-LOGGING.MESSAGE.KEY}</routingKeyPattern>
+            <charset>UTF-8</charset>
+        </appender>
+
+
+        <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook">
+            <sleepMillis>3000</sleepMillis>
+        </shutdownHook>
+
+        <!-- LOG everything at INFO level -->
+    <root level="${logback.root.log.level:-INFO}">
+        <appender-ref ref="Console" />
+    </root>
+
+    <!-- LOG "br.com.santander*" at DEBUG level -->
+    <logger name="br.com.santander" level="${logback.log.level:-INFO}" additivity="false">
+        <appender-ref ref="RabbitMQ" />
+        <appender-ref ref="Console" />
+    </logger>
+
+
+</configuration>
