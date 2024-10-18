@@ -30,7 +30,7 @@ This project is just a backend challenge in which the theme was chosen by the de
 The objective will be to create an application that validates customer information to know if they are approved or not to obtain the credit card according to the following criteria:
 <br>
 <br>
-<img src="./image0.png">
+<img src="./images/image0.png">
 
 ### See the table
 
@@ -74,28 +74,28 @@ The objective will be to create an application that validates customer informati
          <td>Approved</td>
       </tr>
       <tr>
-         <td>Middle</td>
+         <td>middle</td>
          <td>false</td>
          <td>false</td>
          <td>fair</td>
          <td>Not Approved</td>
       </tr>
       <tr>
-         <td>Middle</td>
+         <td>middle</td>
          <td>false</td>
          <td>false</td>
          <td>good</td>
          <td>Not Approved</td>
       </tr>
       <tr>
-         <td>Middle</td>
+         <td>middle</td>
          <td>yes</td>
          <td>yes</td>
          <td>good</td>
          <td>Approved</td>
       </tr>
       <tr>
-         <td>Middle</td>
+         <td>middle</td>
          <td>false</td>
          <td>true</td>
          <td>excellent</td>
@@ -118,7 +118,7 @@ The objective will be to create an application that validates customer informati
 </table>
 
 ## Design Solution
-![](image1.png)
+![](images/image1.png)
 <!-- Built With -->
 ## Built With
 This project was made with:
@@ -144,13 +144,15 @@ You can see this preview video about it.
 
 1. Clone the repo
    sh
-   git clone link
+   git clone link https://github.com/culyssander/credit-card-approvel
 
 
 
 <!-- USAGE EXAMPLES -->
 ### Usage
-This is a perfect for a quick and easy use case with generating a uniform read me document every time for all of your projects.
+It's a perfect project for those who want to get into the world of microservices. If you'd like to learn more about the project's architecture and other microservices solutions, watch the video on my YouTube channel.
+
+<a target="_blank" href="https://www.youtube.com/watch?v=Wwo-mSIWymc&list=PLqs4l_WmH-7BJfCoaWj4j_MXj4jSr8edO">Playlist of Sales Microservice</a>
 
 <!-- ROAD MAP -->
 ### Road map
@@ -160,7 +162,8 @@ Right now I believe this project is development I might find it useful to add on
 <!-- CONTRIBUTING -->
 ### Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+<p>Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+</p>
 
 1. Fork the Project
 2. Create your Feature Branch (git checkout -b feature/creditCardsApprovalFeature)
@@ -171,13 +174,9 @@ Contributions are what make the open source community such an amazing place to b
 <!-- CONTACT -->
 ## Contact
 
-Feel free to reach out to me with questions comments, or concerns at one of the ways below.
+<p>Feel free to reach out to me with questions comments, or concerns at one of the ways below. </p>
+<a target="_blank" href="https://www.youtube.com/@quitumbaferreira/"><img src="./images/youtube.png"></a>
+<a target="_blank" href="https://www.linkedin.com/in/quitumbaferreira/"><img src="./images/linkedin.png"></a>
+<a target="_blank" href="https://github.com/culyssander"><img src="./images/github.png"></a>
+<a target="_blank" href="https://culysoft.com/"><img src="./images/logo-culysoft.png" width="40" height="45"></a>
 
-Git Hub: https://github.com/culyssander
-
-Email: culyssandercentro@gmail.com
-
-LinkedIn Link: https://www.linkedin.com/in/quitumbaferreira/
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
