@@ -35,7 +35,7 @@ class UserControllerTest {
         Mockito.when(userServices.createUserRoleClient(userInputDto)).thenReturn(userDto());
         System.out.println(mapper.writeValueAsString(userInputDto));
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/users/create-new/role/client")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/users")
                         .content(mapper.writeValueAsString(userInputDto)).contentType("application/json"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -46,10 +46,10 @@ class UserControllerTest {
     void itShouldReturnBaqRequestWhenCreateUserBodyIsEmpty() throws Exception {
         UserInputDto userInputDto = getUserInputDto();
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/users/create-new/role/client"))
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/users"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andExpect(MockMvcResultMatchers.content().json("{\"type\":\"about:blank\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Failed to read request\",\"instance\":\"/api/v1/users/create-new/role/client\"}"));
+                .andExpect(MockMvcResultMatchers.content().json("{\"type\":\"about:blank\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Failed to read request\",\"instance\":\"/api/v1/users\"}"));
     }
 
     @Test

@@ -11,6 +11,7 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @RedisHash("log")
+@ToString
 public class EventLog implements Serializable {
     private String id;
     private String event;

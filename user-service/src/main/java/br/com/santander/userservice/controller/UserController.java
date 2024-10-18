@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private UserServices userServices;
 
-    @PostMapping("create-new/role/client")
+    @PostMapping()
     public UserDto createUserRoleClient(@Valid @RequestBody UserInputDto userInputDto) {
         return userServices.createUserRoleClient(userInputDto);
     }

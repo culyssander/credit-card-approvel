@@ -23,7 +23,7 @@ public class RequestCreditCardController {
     private RequestCreditCardServices requestCreditCardServices;
 
     @GetMapping("/request")
-    public ResponseCreditCard request(@RequestParam String clientCPF, @RequestHeader String correlationId)  {
+    public ResponseCreditCard request(@RequestParam String clientCPF, @RequestHeader(required = false) String correlationId)  {
         MDC.put(CORRELACTION_ID, correlationId);
         EventLog.builder()
                 .event(EVENT_CREDIT_CARD_REQUEST_START_EXECUTION)
