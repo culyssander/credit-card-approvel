@@ -134,7 +134,7 @@ This project was made with:
 ## Getting Started
 You simply clone the project over. After doing so go to your command terminal and type `docker compose up -d` this will allow you to get the run in you machine.
 
-After start open this link to seen documentation `localhost:8080/swagger-ui/index.html`
+After start open this link to seen documentation `localhost:8888/swagger-ui/index.html`
 
 <!-- Prerequisites -->
 You need to have docker in your machine to start.
