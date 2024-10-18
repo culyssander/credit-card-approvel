@@ -18,7 +18,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-This project is just a backend challenge in which the theme was chosen by the developer and he decided to make one related to the client who presented the challenge. 
+This project is just a backend challenge in which the subject was chosen by the developer and I decided to create app related to the client who presented the challenge. 
 <br>
 <ul>
     <li>Make a solution design to explain your application</li>
