@@ -6,15 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import static br.com.santander.logsservice.util.Constants.RABBIT_QUEUE_LOGGING;
@@ -28,10 +21,11 @@ public class LogsListener {
 
     @RabbitListener(queues = RABBIT_QUEUE_LOGGING)
     public void save(Message message) {
+        message.getMessageProperties().setContentType("application/json");
 
         EventLog eventLog = EventLog.builder()
                 .id(UUID.randomUUID().toString())
-                .event(message.getBody().toString())
+                .event(new String(message.getBody()))
                 .build();
 
         logsServices.save(eventLog);

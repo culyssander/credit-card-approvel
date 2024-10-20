@@ -48,7 +48,24 @@ public class AccountController {
     }
 
     @GetMapping("/cpf/{cpf}")
-    public Account findByCPF(@PathVariable String cpf) {
-        return accountServices.findByCpf(cpf);
+    public Account findByCPF(@PathVariable String cpf,  @RequestHeader(required = false, defaultValue = "3243455456466") String correlationId) {
+        MDC.put(CORRELACTION_ID, correlationId);
+        EventLog.builder()
+                .event("EVENT FIND BY CPF START")
+                .message(AccountController.class.getMethods()[1].getName())
+                .field("KEY_FIELD_FIND_BY_CPF", cpf)
+                .build()
+                .printLog(log, LoggerType.INFO);
+
+        Account byCpf = accountServices.findByCpf(cpf);
+
+        EventLog.builder()
+                .event("EVENT FIND BY CPF END")
+                .message(AccountController.class.getMethods()[1].getName())
+                .field("KEY_FIELD_FIND_BY_CPF", byCpf)
+                .build()
+                .printLog(log, LoggerType.INFO);
+
+        return byCpf;
     }
 }

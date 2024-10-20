@@ -1,1 +1,132 @@
-{"openapi":"3.0.1","info":{"title":"OpenAPI definition","version":"v0"},"servers":[{"url":"http://localhost:8090","description":"Generated server url"}],"paths":{"/api/v1/credit-cards/request":{"get":{"tags":["request-credit-card-controller"],"operationId":"request","parameters":[{"name":"clientCPF","in":"query","required":true,"schema":{"type":"string"}},{"name":"correlationId","in":"header","required":false,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/ResponseCreditCard"}}}}}}},"/api/v1/credit-cards/histories":{"get":{"tags":["request-credit-card-controller"],"operationId":"findAll","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/RequestCreditCard"}}}}}}}}},"components":{"schemas":{"ResponseCreditCard":{"type":"object","properties":{"clientName":{"type":"string"},"result":{"type":"string"},"reason":{"type":"string"},"createdAt":{"type":"string","format":"date-time"}}},"RequestCreditCard":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"clientCpf":{"type":"string"},"hasJob":{"type":"boolean"},"ownHouse":{"type":"boolean"},"score":{"type":"string"},"result":{"type":"string"},"reason":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"createdBy":{"type":"string"}}}}}}
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8090",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/v1/credit-cards/request": {
+            "get": {
+                "tags": [
+                    "request-credit-card-controller"
+                ],
+                "operationId": "request",
+                "parameters": [
+                    {
+                        "name": "clientCPF",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseCreditCard"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/credit-cards/histories": {
+            "get": {
+                "tags": [
+                    "request-credit-card-controller"
+                ],
+                "operationId": "findAll",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RequestCreditCard"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ResponseCreditCard": {
+                "type": "object",
+                "properties": {
+                    "clientName": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "string"
+                    },
+                    "reason": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "RequestCreditCard": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "clientCpf": {
+                        "type": "string"
+                    },
+                    "hasJob": {
+                        "type": "boolean"
+                    },
+                    "ownHouse": {
+                        "type": "boolean"
+                    },
+                    "score": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "string"
+                    },
+                    "reason": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdBy": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
