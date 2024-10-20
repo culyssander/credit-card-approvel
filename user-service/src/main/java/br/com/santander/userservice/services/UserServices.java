@@ -35,7 +35,7 @@ public class UserServices {
                 .name(userInputDto.getName())
                 .email(userInputDto.getEmail())
                 .password(new BCryptPasswordEncoder().encode(userInputDto.getPassword()))
-                .role(Role.CLIENT)
+                .role(Role.USER)
                 .status(true)
                 .build();
 

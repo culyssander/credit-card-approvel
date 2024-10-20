@@ -1,0 +1,482 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8888",
+            "description": "Generated server url"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Account",
+            "description": "Account Service API"
+        }
+    ],
+    "paths": {
+        "/api/v1/accounts/create": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "operationId": "createAccount",
+                "parameters": [
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "3243455456466"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AccountInput"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AccountDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/accounts/cpf/{cpf}": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "operationId": "findByCPF",
+                "parameters": [
+                    {
+                        "name": "cpf",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Account"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/credit-cards/request": {
+            "get": {
+                "tags": [
+                    "request-credit-card-controller"
+                ],
+                "operationId": "request",
+                "parameters": [
+                    {
+                        "name": "clientCPF",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseCreditCard"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+        },
+        "/api/v1/credit-cards/histories": {
+            "get": {
+                "tags": [
+                    "request-credit-card-controller"
+                ],
+                "operationId": "findAll",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RequestCreditCard"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "operationId": "createUserRoleClient",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserInputDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users/email/{email}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "operationId": "findByEmail",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AccountInput": {
+                "required": [
+                    "address",
+                    "clientCPF",
+                    "clientName",
+                    "hasJob",
+                    "ownHouse",
+                    "typeAccount"
+                ],
+                "type": "object",
+                "properties": {
+                    "clientName": {
+                        "type": "string"
+                    },
+                    "clientCPF": {
+                        "type": "string"
+                    },
+                    "clientBirth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "hasJob": {
+                        "type": "boolean"
+                    },
+                    "ownHouse": {
+                        "type": "boolean"
+                    },
+                    "typeAccount": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/AddressInput"
+                    }
+                }
+            },
+            "AddressInput": {
+                "required": [
+                    "cep"
+                ],
+                "type": "object",
+                "properties": {
+                    "numbers": {
+                        "type": "string"
+                    },
+                    "complement": {
+                        "type": "string"
+                    },
+                    "accountNumber": {
+                        "type": "string"
+                    },
+                    "cep": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AccountDto": {
+                "type": "object",
+                "properties": {
+                    "accountNumber": {
+                        "type": "string"
+                    },
+                    "clientName": {
+                        "type": "string"
+                    },
+                    "clientCPF": {
+                        "type": "string"
+                    },
+                    "clientBirth": {
+                        "type": "string"
+                    },
+                    "hasJob": {
+                        "type": "boolean"
+                    },
+                    "ownHouse": {
+                        "type": "boolean"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "typeAccount": {
+                        "type": "string",
+                        "enum": [
+                            "CA",
+                            "SA"
+                        ]
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/Address"
+                    }
+                }
+            },
+            "Address": {
+                "type": "object",
+                "properties": {
+                    "cep": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "numbers": {
+                        "type": "string"
+                    },
+                    "complement": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Account": {
+                "type": "object",
+                "properties": {
+                    "accountNumber": {
+                        "type": "string"
+                    },
+                    "clientName": {
+                        "type": "string"
+                    },
+                    "clientCpf": {
+                        "type": "string"
+                    },
+                    "clientBirth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "hasJob": {
+                        "type": "boolean"
+                    },
+                    "ownHouse": {
+                        "type": "boolean"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "typeAccount": {
+                        "type": "string",
+                        "enum": [
+                            "CA",
+                            "SA"
+                        ]
+                    },
+                    "score": {
+                        "type": "string",
+                        "enum": [
+                            "FAIR",
+                            "GOOD",
+                            "EXCELLENT"
+                        ]
+                    }
+                }
+            },
+            "ResponseCreditCard": {
+                "type": "object",
+                "properties": {
+                    "clientName": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "string"
+                    },
+                    "reason": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "RequestCreditCard": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "clientCpf": {
+                        "type": "string"
+                    },
+                    "hasJob": {
+                        "type": "boolean"
+                    },
+                    "ownHouse": {
+                        "type": "boolean"
+                    },
+                    "score": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "string"
+                    },
+                    "reason": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdBy": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UserInputDto": {
+                "required": [
+                    "email",
+                    "name",
+                    "password"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UserDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "role": {
+                        "type": "string",
+                        "enum": [
+                            "ADMIN",
+                            "CLIENT"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastUpdated": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastLogin": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            }
+        }
+    }
+}

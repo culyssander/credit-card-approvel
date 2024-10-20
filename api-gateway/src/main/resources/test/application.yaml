@@ -1,0 +1,49 @@
+server:
+  servlet:
+    context-path:
+  port: 8888
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-service-route
+          uri: lb://user-service
+          predicates:
+            - Path=/user-service/v3/api-docs
+#            - Path=/api/v1/users/**
+            - Method=GET
+        - id: account-service-route
+          uri: lb://account-service
+          predicates:
+            - Path=/account-service/v3/api-docs
+            - Method=GET
+  main:
+    web-application-type: reactive
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+#    disable-swagger-default-url: true
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - name: account Service
+        url: /account-service/v3/api-docs
+      - name: user Service
+        url: /user-service/v3/api-docs
+#      - name: API Gateway Service
+#        url: /v3/api-docs

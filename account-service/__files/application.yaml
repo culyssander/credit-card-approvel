@@ -1,0 +1,41 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: account-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/account?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useTimezone=true&serverTimezone=America/Sao_Paulo
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      dll-auto: none
+      format_sql: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+
+openapi:
+  service:
+    title: account-service doc
+    version: 1.0.0
+    url: http://localhost:8888 #api gateway url
+springdoc:
+  api-docs:
+    path: /account-service/v3/api-docs
+  swagger-ui:
+    path: /account-service/swagger-ui.html
+
+address:
+  service:
+    url: http://localhost:8080/api/v1/address/

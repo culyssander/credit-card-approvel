@@ -55,7 +55,7 @@ class UserServicesTest {
         
         // then
         assertEquals(userInputDto.getName(), userCapture.getName());
-        assertEquals(Role.CLIENT, userCapture.getRole());
+        assertEquals(Role.USER, userCapture.getRole());
         assertTrue(userCapture.isStatus());
     }
 
@@ -75,7 +75,7 @@ class UserServicesTest {
 
         // then
         assertEquals(userInputDto.getName(), userCapture.getName());
-        assertEquals(Role.CLIENT, userCapture.getRole());
+        assertEquals(Role.USER, userCapture.getRole());
         assertTrue(userCapture.isStatus());
         assertNotNull(userCapture.getLastUpdated());
     }

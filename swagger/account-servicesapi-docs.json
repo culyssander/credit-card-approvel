@@ -1,0 +1,248 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8085",
+            "description": "Generated server url"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Account",
+            "description": "Account Service API"
+        }
+    ],
+    "paths": {
+        "/api/v1/accounts/create": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "operationId": "createAccount",
+                "parameters": [
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "3243455456466"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AccountInputDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AccountDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/accounts/cpf/{cpf}": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "operationId": "findByCPF",
+                "parameters": [
+                    {
+                        "name": "cpf",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Account"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AccountInput": {
+                "required": [
+                    "address",
+                    "clientCPF",
+                    "clientName",
+                    "hasJob",
+                    "ownHouse",
+                    "typeAccount"
+                ],
+                "type": "object",
+                "properties": {
+                    "clientName": {
+                        "type": "string"
+                    },
+                    "clientCPF": {
+                        "type": "string"
+                    },
+                    "clientBirth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "hasJob": {
+                        "type": "boolean"
+                    },
+                    "ownHouse": {
+                        "type": "boolean"
+                    },
+                    "typeAccount": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/AddressInputDto"
+                    }
+                }
+            },
+            "AddressInput": {
+                "required": [
+                    "cep"
+                ],
+                "type": "object",
+                "properties": {
+                    "numbers": {
+                        "type": "string"
+                    },
+                    "complement": {
+                        "type": "string"
+                    },
+                    "accountNumber": {
+                        "type": "string"
+                    },
+                    "cep": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AccountDto": {
+                "type": "object",
+                "properties": {
+                    "accountNumber": {
+                        "type": "string"
+                    },
+                    "clientName": {
+                        "type": "string"
+                    },
+                    "clientCPF": {
+                        "type": "string"
+                    },
+                    "clientBirth": {
+                        "type": "string"
+                    },
+                    "hasJob": {
+                        "type": "boolean"
+                    },
+                    "ownHouse": {
+                        "type": "boolean"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "typeAccount": {
+                        "type": "string",
+                        "enum": [
+                            "CA",
+                            "SA"
+                        ]
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/AddressDto"
+                    }
+                }
+            },
+            "Address": {
+                "type": "object",
+                "properties": {
+                    "cep": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "numbers": {
+                        "type": "string"
+                    },
+                    "complement": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Account": {
+                "type": "object",
+                "properties": {
+                    "accountNumber": {
+                        "type": "string"
+                    },
+                    "clientName": {
+                        "type": "string"
+                    },
+                    "clientCpf": {
+                        "type": "string"
+                    },
+                    "clientBirth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "hasJob": {
+                        "type": "boolean"
+                    },
+                    "ownHouse": {
+                        "type": "boolean"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "typeAccount": {
+                        "type": "string",
+                        "enum": [
+                            "CA",
+                            "SA"
+                        ]
+                    },
+                    "score": {
+                        "type": "string",
+                        "enum": [
+                            "FAIR",
+                            "GOOD",
+                            "EXCELLENT"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
