@@ -8,6 +8,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static br.com.santander.logsservice.util.Constants.RABBIT_QUEUE_LOGGING;
@@ -24,7 +25,7 @@ public class LogsListener {
         message.getMessageProperties().setContentType("application/json");
 
         EventLog eventLog = EventLog.builder()
-                .id(UUID.randomUUID().toString())
+                .id(LocalDateTime.now().toString())
                 .event(new String(message.getBody()))
                 .build();
 
