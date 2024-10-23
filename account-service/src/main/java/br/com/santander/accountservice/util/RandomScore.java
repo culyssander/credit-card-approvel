@@ -8,8 +8,13 @@ import java.util.Random;
 @Component
 public class RandomScore {
 
+    private Random generator;
+
+    public RandomScore(Random generator) {
+        this.generator = generator;
+    }
+
     public Score score() {
-        Random generator = new Random();
         int random = generator.nextInt(2);
 
         return Score.fromKey(random);
