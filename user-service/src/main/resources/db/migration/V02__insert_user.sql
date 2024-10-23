@@ -1,0 +1,1 @@
+INSERT INTO users(name, email, password, status, role) VALUES('Quitumba Ferreira', 'quitumba.ferreira@f1rst.com.br','$2a$10$VhVSA4LqS//1wbZi5Ee3cO7eyCx6iJI.34b4CqlXSUMkIb7mYj2YO', 1, 'ADMIN');

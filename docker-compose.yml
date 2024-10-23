@@ -16,6 +16,17 @@ services:
       - '8888:8888'
     depends_on:
       - eureka-service
+  
+  authentication-service:
+    build: ./authentication-service/
+    restart: on-failure
+    ports:
+      - '9595:9595'
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka/
+      - user.service.url=http://user-service:8095/api/v1/users/
+    depends_on:
+      - eureka-service
       
   logs-service:
     build: ./logs-service/

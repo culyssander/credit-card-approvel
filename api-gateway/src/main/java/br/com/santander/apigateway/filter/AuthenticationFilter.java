@@ -16,7 +16,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     @Autowired
     private ValidatorRouter router;
 
-//    @Autowired
+    @Autowired
 //    private JWTUtil jwtUtil;
 
     public AuthenticationFilter() {
@@ -27,25 +27,25 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     public GatewayFilter apply(Config config) {
         return (((exchange, chain) -> {
 
-//            if (router.isSecure.test(exchange.getRequest())) {
-//                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION))
-//                    throw new BusinessException("Missing authorization header");
-//
-//                String authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
-//
-//                if (authHeader != null && authHeader.startsWith("Bearer ")) {
-//                    authHeader = authHeader.substring(7);
-//                }
-//
-//                try {
-////                    String URL = UriComponentsBuilder.fromHttpUrl("")
-////                            .path("")
-////                            .toUriString();
+            if (router.isSecure.test(exchange.getRequest())) {
+                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION))
+                    throw new RuntimeException("Missing authorization header");
+
+                String authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
+
+                if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                    authHeader = authHeader.substring(7);
+                }
+
+                try {
+//                    String URL = UriComponentsBuilder.fromHttpUrl("")
+//                            .path("")
+//                            .toUriString();
 //                    jwtUtil.validateToken(authHeader);
-//                } catch (BusinessException e) {
-//                    throw new BusinessException("Invalid access...");
-//                }
-//            }
+                } catch (RuntimeException e) {
+                    throw new RuntimeException("Invalid access...");
+                }
+            }
 
             System.out.println("ROTA: " + router.isSecure.test(exchange.getRequest()));
             System.out.println("ROTA: " + exchange.getRequest().getURI().getPath());

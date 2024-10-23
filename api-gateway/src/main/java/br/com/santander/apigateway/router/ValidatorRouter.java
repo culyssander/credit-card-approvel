@@ -10,13 +10,10 @@ import java.util.function.Predicate;
 public class ValidatorRouter {
 
     private static  final List<String> OPEN_API_ENDPOINTS = List.of(
-            "/swagger-ui/index.html",
-            "/api/v1/users/create-new/role/client",
-            "/api/v1/products/filters"
+            "/swagger-ui.html",
+            "/api/v1/login"
     );
 
     public Predicate<ServerHttpRequest> isSecure = request -> OPEN_API_ENDPOINTS.stream()
             .noneMatch(uri -> request.getURI().getPath().contains(uri));
-
-//    public Predicate<> isClientRouter = req
 }
